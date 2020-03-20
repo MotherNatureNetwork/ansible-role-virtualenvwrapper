@@ -1,13 +1,16 @@
 ---
 
 - name: Install pip
-  apt: name=python-pip
+  easy_install:
+    name: pip
+    state: latest
 
 - name: install virtualenvwrapper
   pip: >
     name=virtualenvwrapper
     version={{ virtualenvwrapper_version }}
     state=present
+    extra_args="--ignore-installed six"
   tags:
     - virtualenvwrapper
     - virtualenvwrapper_installation
